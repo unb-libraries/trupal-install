@@ -13,6 +13,9 @@
             "email": "libsupport@unb.ca"
         }
     ],
+    "extra": {
+        "class": "Trupal\\Composer\\Installer\\PluginInstaller"
+    },
     "minimum-stability": "dev",
     "require": {
         "composer-plugin-api": "^1.0 || ^2.0"
