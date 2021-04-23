@@ -14,6 +14,8 @@ use Composer\Repository\InstalledRepositoryInterface;
  */
 class TrupalInstaller extends LibraryInstaller {
 
+  const EXT_PATH_SETTING = 'trupal-extension-install-path';
+
   /**
    * @var \Composer\Package\PackageInterface
    */
@@ -63,7 +65,7 @@ class TrupalInstaller extends LibraryInstaller {
     $exploded_package_name = explode('/', $package->getPrettyName());
     return implode(DIRECTORY_SEPARATOR, [
       $trupal_root,
-      'extend',
+      trim($trupal->getExtra()[self::EXT_PATH_SETTING], '/\\'),
       array_pop($exploded_package_name)
     ]);
   }
