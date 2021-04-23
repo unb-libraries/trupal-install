@@ -57,6 +57,20 @@ class TrupalInstaller extends LibraryInstaller {
   /**
    * {@inheritDoc}
    */
+  public function getInstallPath(PackageInterface $package) {
+    $trupal = $this->getTrupalPackage();
+    $trupal_root = parent::getInstallPath($trupal);
+    $exploded_package_name = explode('/', $package->getPrettyName());
+    return implode(DIRECTORY_SEPARATOR, [
+      $trupal_root,
+      'extend',
+      array_pop($exploded_package_name)
+    ]);
+  }
+
+  /**
+   * {@inheritDoc}
+   */
   public function supports($packageType) {
     return $packageType === 'trupal-extension';
   }
